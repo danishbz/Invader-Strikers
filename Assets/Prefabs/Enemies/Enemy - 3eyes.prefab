@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2403755936794464172}
   m_Layer: 0
   m_Name: Enemy - 3eyes
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2403755936794464169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.13, y: -0.2, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,9 +123,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
-  m_Radius: 0.09
+  m_Radius: 0.25
 --- !u!50 &2403755936794464174
 Rigidbody2D:
   serializedVersion: 4
@@ -161,8 +161,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theRB: {fileID: 2403755936794464174}
   moveSpeed: 1
-  damage: 5
+  damage: 1
   hitWaitTime: 1
+  health: 1
 --- !u!114 &2403755936794464172
 MonoBehaviour:
   m_ObjectHideFlags: 0
