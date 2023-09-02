@@ -4,39 +4,52 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Rigidbody2D theRB;
-    public float moveSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float damage;
+    [SerializeField] private float hitWaitTime = 1f;
+    [SerializeField] private float health = 1f; // enemy health
+
+    private Rigidbody2D rb;
     private Transform target;
-
-    public float damage;
-
-    public float hitWaitTime = 1f;
     private float hitCounter;
+    private SpriteRenderer spriteRenderer;
 
-    public float health = 1f; // enemy health
     // Start is called before the first frame update
     void Start()
     {
-        target = FindObjectOfType<PlayerController>().transform;
-        target = PlayerHealthController.instance.transform;
+        rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        theRB.velocity = (target.position - transform.position).normalized * moveSpeed;
-
-        if(hitCounter > 0f)
+        if(target)
+        {
+            rb.velocity = (target.position - transform.position).normalized * moveSpeed;
+        }
+        if (hitCounter > 0f)
         {
             hitCounter -= Time.deltaTime;
         }
+        //Flip sprite when player posX is BIGGER than enemy posX
+        if (transform.position.x < target.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        //Flip sprite when player posX is SMALLER than enemy posX
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player" && hitCounter <= 0f)
         {
-            PlayerHealthController.instance.TakeDamage(damage);
+            PlayerHealthController.instance.ApplyDamage(damage);
 
             hitCounter = hitWaitTime;
         }

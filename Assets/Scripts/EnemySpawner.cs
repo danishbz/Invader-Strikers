@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyToSpawn;
+    //[SerializeField] private GameObject enemyToSpawn;
+    [SerializeField] private GameObject[] enemyArr;
+    [SerializeField] private float timeToSpawn;
+    [SerializeField] private Transform minSpawn, maxSpawn;
 
-    public float timeToSpawn;
     private float spawnCounter;
-    public Transform minSpawn, maxSpawn;
-
     private Transform target;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnCounter = timeToSpawn;
 
-        target = PlayerHealthController.instance.transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -29,11 +29,15 @@ public class EnemySpawner : MonoBehaviour
             spawnCounter = timeToSpawn;
 
             //Instantiate(enemyToSpawn, transform.position, transform.rotation);
-
-            Instantiate(enemyToSpawn, SelectSpawnPoint(), transform.rotation);
+            for (int i = 0; i < enemyArr.Length; i++)
+            {
+                Instantiate(enemyArr[i], SelectSpawnPoint(), transform.rotation);
+            }
         }
-
-        transform.position = target.position;
+        if(target)
+        {
+            transform.position = target.position;
+        }
     }
 
     public Vector3 SelectSpawnPoint()

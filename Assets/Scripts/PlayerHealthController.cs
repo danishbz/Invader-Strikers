@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Scripting;
 using UnityEngine.UI;
-
 public class PlayerHealthController : MonoBehaviour
 {
     public static PlayerHealthController instance;
+
+    [SerializeField] private float maxHealth;
+    [SerializeField] private Slider healthSlider;
+
+    private float currentHealth;
+    private GameObject player;
+
     private void Awake()
     {
-      instance = this;  
+        instance = this;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    public float currentHealth, maxHealth;
-
-    public Slider healthSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -25,25 +27,16 @@ public class PlayerHealthController : MonoBehaviour
         healthSlider.value = currentHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyDamage(float damageToTake)
     {
-        /*if(Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(10f);
-        }*/
-    }
-
-    public void TakeDamage(float damageToTake)
-    {
+        Debug.Log("Damage taken");
         currentHealth -= damageToTake;
 
         if(currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            player.SetActive(false);
         }
 
         healthSlider.value = currentHealth;
-
     }
 }
