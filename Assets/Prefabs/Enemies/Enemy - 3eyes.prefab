@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 939555419
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1223912698, guid: 257b551fd251f324085ee6343e48a4ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -163,6 +163,12 @@ MonoBehaviour:
   damage: 1
   hitWaitTime: 1
   health: 1
+<<<<<<< HEAD
+  powerUpPrefab: {fileID: 1521522386595444702, guid: 5ad1fa99ddaf31b4697402e71732b334, type: 3}
+  speedPowerUpPrefab: {fileID: 7931176645133097938, guid: 3519d6ba9e8c652499301117e0605343, type: 3}
+=======
+  points: 10
+>>>>>>> 34ca63dac42326b8c8198d8e4988a810bb59aefc
 --- !u!114 &2403755936794464172
 MonoBehaviour:
   m_ObjectHideFlags: 0
