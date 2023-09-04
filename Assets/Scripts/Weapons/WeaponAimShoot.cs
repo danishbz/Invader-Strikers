@@ -12,7 +12,7 @@ public class WeaponAimShoot : MonoBehaviour
     public GameObject bullet;
     public bool canFire;
     // control time between firing, no. of bullets, bullet spread (for shotgun), bullet speed
-    public float timeBetweenFiring, numberOfBullets, bulletSpread, bulletSpeed;
+    public float timeBetweenFiring, numberOfBullets, bulletSpread, bulletSpeed, bulletTime;
     // where the bullet comes out from
     public Transform ShootPoint;
 
@@ -57,6 +57,7 @@ public class WeaponAimShoot : MonoBehaviour
             Vector2 pdir = Vector2.Perpendicular(dir) * Random.Range(-bulletSpread, bulletSpread);
             // brb.velocity = (dir + pdir) * bulletSpeed;
             brb.velocity = (dir + pdir) * bulletSpeed;
+            Destroy(b, bulletTime);
         }
 
     }
