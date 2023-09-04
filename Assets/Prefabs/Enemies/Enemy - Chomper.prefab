@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 734627031588194362}
   - component: {fileID: 734627031588194363}
   - component: {fileID: 734627031588194359}
-  - component: {fileID: 734627031588194383}
   - component: {fileID: 734627031588194356}
+  - component: {fileID: 734627031588194383}
   m_Layer: 0
   m_Name: Enemy - Chomper
   m_TagString: Enemy
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 939555419
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1428411936, guid: 8a8c8da61dbda2941b1334e7093eb68d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -130,7 +130,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
-<<<<<<< HEAD
 --- !u!114 &734627031588194356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +146,6 @@ MonoBehaviour:
   damage: 2
   hitWaitTime: 1
   health: 1
-  powerUpPrefab: {fileID: 1521522386595444702, guid: 5ad1fa99ddaf31b4697402e71732b334, type: 3}
-  speedPowerUpPrefab: {fileID: 7931176645133097938, guid: 3519d6ba9e8c652499301117e0605343, type: 3}
-=======
->>>>>>> 34ca63dac42326b8c8198d8e4988a810bb59aefc
 --- !u!60 &734627031588194383
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -180,20 +175,3 @@ PolygonCollider2D:
       - {x: -0.4, y: 0.34}
       - {x: -0.4, y: -0.14}
       - {x: 0.45, y: -0.14}
---- !u!114 &734627031588194356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734627031588194352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148b1c91c577df9458223f6f967bebde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  damage: 2
-  hitWaitTime: 1
-  health: 2
-  points: 15
