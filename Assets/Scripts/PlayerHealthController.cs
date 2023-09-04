@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+<<<<<<< HEAD:Assets/Scripts/HealthManager.cs
 <<<<<<< HEAD:Assets/Scripts/PlayerHealthController.cs
 
 public class PlayerHealthController : MonoBehaviour
 =======
 public class HealthManager : MonoBehaviour
 >>>>>>> 34ca63dac42326b8c8198d8e4988a810bb59aefc:Assets/Scripts/HealthManager.cs
+=======
+public class PlayerHealthController : MonoBehaviour
+>>>>>>> parent of 47c7d32 (GameOver screen, Timer, score, highscore):Assets/Scripts/PlayerHealthController.cs
 {
-    public static HealthManager instance;
+    public static PlayerHealthController instance;
 
-    [SerializeField] private float maxHealth, secToWait;
+    [SerializeField] private float maxHealth;
     [SerializeField] private Slider healthSlider;
 
     private float currentHealth;
@@ -41,6 +45,7 @@ public class HealthManager : MonoBehaviour
         // Check if the player is immune before applying damage
         if (!isImmune)
         {
+<<<<<<< HEAD:Assets/Scripts/HealthManager.cs
 <<<<<<< HEAD:Assets/Scripts/PlayerHealthController.cs
             Debug.Log("Damage taken");
             currentHealth -= damageToTake;
@@ -48,6 +53,9 @@ public class HealthManager : MonoBehaviour
             Destroy(player);
             StartCoroutine(EndScreenCoroutine());
             //player.SetActive(false);
+=======
+            player.SetActive(false);
+>>>>>>> parent of 47c7d32 (GameOver screen, Timer, score, highscore):Assets/Scripts/PlayerHealthController.cs
         }
 >>>>>>> 34ca63dac42326b8c8198d8e4988a810bb59aefc:Assets/Scripts/HealthManager.cs
 
@@ -76,11 +84,5 @@ public class HealthManager : MonoBehaviour
     private void DeactivateImmunity()
     {
         isImmune = false;
-    }
-    private IEnumerator EndScreenCoroutine()
-    {
-        Debug.Log("Started Coroutine");
-        yield return new WaitForSeconds(secToWait);
-        GameManager.instance.GameOver();
     }
 }

@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         Time.timeScale = 1f;
-        gameOverCanvas.SetActive(false);
-        pauseCanvas.SetActive(false);
     }
     public void Pause()
     {
@@ -39,9 +37,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void HomeScreen(string name)
+/*    public void HomeScreen(string name)
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(name);
-    }
+    }*/
 }
