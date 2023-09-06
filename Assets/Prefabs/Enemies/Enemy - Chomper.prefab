@@ -176,3 +176,5 @@ MonoBehaviour:
   hitWaitTime: 1
   health: 2
   points: 15
+  shieldEffectPreFab: {fileID: 8663592594260456095, guid: 82ef862ca2c76d440bcea1c4a26232e8, type: 3}
+  speedPowerUpPrefab: {fileID: 970572507975198640, guid: b4a81b61fa52df347aaeef130fe90d42, type: 3}
