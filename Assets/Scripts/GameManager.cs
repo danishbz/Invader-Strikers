@@ -16,6 +16,20 @@ public class GameManager : MonoBehaviour
         gameOverCanvas.SetActive(false);
         pauseCanvas.SetActive(false);
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            if(!pauseCanvas.activeSelf)
+            {
+                Pause();
+            }
+            else
+            {
+                Play();
+            }
+        }
+    }
     public void Pause()
     {
         Time.timeScale = 0f;
@@ -39,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void HomeScreen(string name)
+    public void TitleScreen(string name)
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(name);
