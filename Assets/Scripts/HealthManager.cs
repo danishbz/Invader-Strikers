@@ -12,6 +12,11 @@ public class HealthManager : MonoBehaviour
     private float currentHealth;
     private GameObject player;
 
+    // New variables for immunity system
+    private float immunityDuration = 5f; // Duration of immunity after colliding with a power-up
+    private bool isImmune = false;
+    private PlayerController playerController;
+
     private void Awake()
     {
         instance = this;
@@ -29,22 +34,44 @@ public class HealthManager : MonoBehaviour
 
     public void ApplyDamage(float damageToTake)
     {
-        Debug.Log("Damage taken");
-        currentHealth -= damageToTake;
-
-        if(currentHealth <= 0)
+        // Check if the player is immune before applying damage
+        if (!isImmune)
         {
-            Destroy(player);
-            StartCoroutine(EndScreenCoroutine());
-            //player.SetActive(false);
-        }
+            Debug.Log("Damage taken");
+            currentHealth -= damageToTake;
 
-        healthSlider.value = currentHealth;
+            if (currentHealth <= 0)
+            {
+                Destroy(player);
+                StartCoroutine(EndScreenCoroutine());
+                player.SetActive(false);
+            }
+
+            healthSlider.value = currentHealth;
+        }
+        else
+        {
+            Debug.Log("Player is immune; no damage taken");
+        }
     }
+
     private IEnumerator EndScreenCoroutine()
     {
         Debug.Log("Started Coroutine");
         yield return new WaitForSeconds(secToWait);
         GameManager.instance.GameOver();
+    }
+
+    // Method to activate immunity
+    public void ActivateImmunity()
+    {
+        isImmune = true;
+        Invoke("DeactivateImmunity", immunityDuration);
+    }
+
+    // Method to deactivate immunity
+    private void DeactivateImmunity()
+    {
+        isImmune = false;
     }
 }
