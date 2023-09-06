@@ -164,8 +164,9 @@ MonoBehaviour:
   hitWaitTime: 1
   health: 1
   points: 10
-  shieldEffectPreFab: {fileID: 8663592594260456095, guid: 82ef862ca2c76d440bcea1c4a26232e8, type: 3}
-  speedPowerUpPrefab: {fileID: 970572507975198640, guid: b4a81b61fa52df347aaeef130fe90d42, type: 3}
+  powerupArr:
+  - {fileID: 1057454547666853454, guid: 9d7e42a87bfb7b2448315fadbd8ff8e6, type: 3}
+  - {fileID: 242360164873108910, guid: f152ee85dcc9ca647ba7f6e66e9f9851, type: 3}
 --- !u!114 &2403755936794464172
 MonoBehaviour:
   m_ObjectHideFlags: 0

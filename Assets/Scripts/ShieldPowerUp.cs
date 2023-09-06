@@ -10,6 +10,7 @@ public class ShieldPowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Shield Taken");
         if (collision.CompareTag("Player") && !isCollected)
         {
             player = collision.gameObject;
@@ -47,7 +48,6 @@ public class ShieldPowerUp : MonoBehaviour
         // Destroy the power-up GameObject.
         Destroy(gameObject);
     }
-
 
     // Deactivate the effect after the specified duration.
     private void DeactivateEffect()

@@ -8,25 +8,18 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
-    private Transform shieldEffectTransform; // Reference to the shield effect transform
+    [SerializeField] private GameObject shield; // Shield game object
+
     private bool hasImmunity = false;
     private float immunityDuration = 5f; // Change this to your desired duration in seconds
     private float immunityTimer = 0f;
-
     private float speedIncreasePercentage = 0.1f; // 1% increase in speed
     private float maxSpeed = 8f; // Maximum speed
 
     // Start is called before the first frame update
     void Start()
     {
-        // Find the shieldEffect GameObject using Transform.Find
-        shieldEffectTransform = transform.Find("shieldEffect");
-
-        // Deactivate it by default
-        if (shieldEffectTransform != null)
-        {
-            shieldEffectTransform.gameObject.SetActive(false);
-        }
+        shield.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log(moveInput);
 
-        transform.position += moveInput * moveSpeed * Time.deltaTime;
+       transform.position += moveInput * moveSpeed * Time.deltaTime;
 
         if(moveInput != Vector3.zero)
         {
@@ -77,9 +70,9 @@ public class PlayerController : MonoBehaviour
     public void ActivateShieldEffect()
     {
         // Check if the shieldEffectTransform is found
-        if (shieldEffectTransform != null)
+        if (shield != null)
         {
-            shieldEffectTransform.gameObject.SetActive(true);
+            shield.SetActive(true);
             hasImmunity = true;
             immunityTimer = immunityDuration;
         }
@@ -89,9 +82,9 @@ public class PlayerController : MonoBehaviour
     public void DeactivateShieldEffect()
     {
         // Check if the shieldEffectTransform is found
-        if (shieldEffectTransform != null)
+        if (shield != null)
         {
-            shieldEffectTransform.gameObject.SetActive(false);
+            shield.SetActive(false);
         }
     }
     // Handle collision with SpeedPowerUp
