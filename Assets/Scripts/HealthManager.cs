@@ -8,6 +8,7 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private float maxHealth, secToWait;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private GameObject shield, shieldIconUI;
 
     private float currentHealth;
     private GameObject player;
@@ -21,6 +22,8 @@ public class HealthManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        shield.SetActive(false);
+        shieldIconUI.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -66,6 +69,8 @@ public class HealthManager : MonoBehaviour
     public void ActivateImmunity()
     {
         isImmune = true;
+        shield.SetActive(true);
+        shieldIconUI.SetActive(true);
         Invoke("DeactivateImmunity", immunityDuration);
     }
 
@@ -73,5 +78,7 @@ public class HealthManager : MonoBehaviour
     private void DeactivateImmunity()
     {
         isImmune = false;
+        shield.SetActive(false);
+        shieldIconUI.SetActive(false);
     }
 }

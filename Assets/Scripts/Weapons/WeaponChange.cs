@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponChange : MonoBehaviour
 {
     // Equip and Switch Multiple Weapons in Unity 2D | Weapon System Unity 2D
     // https://www.youtube.com/watch?v=-YISSX16NwE
-    int TotalWeapons = 1;
-    public int CurrentWeaponIndex;
-    public GameObject[] weapons;
-    public GameObject WeaponHolder;
-    public GameObject CurrentWeapon;
+
+    [SerializeField] private GameObject WeaponHolder, WeaponUI;
+
+    private int TotalWeapons, CurrentWeaponIndex;
+    private GameObject CurrentWeapon;
+    private GameObject[] weaponsArr, weaponsUIArr;
     // Start is called before the first frame update
     void Start()
     {
         TotalWeapons = WeaponHolder.transform.childCount;
-        weapons = new GameObject[TotalWeapons];
+        weaponsArr = new GameObject[TotalWeapons];
+        weaponsUIArr = new GameObject[TotalWeapons];
         for (int i = 0; i < TotalWeapons; i++ )
         {
-            weapons[i] = WeaponHolder.transform.GetChild(i).gameObject;
-            weapons[i].SetActive(false);
+            weaponsArr[i] = WeaponHolder.transform.GetChild(i).gameObject;
+            weaponsArr[i].SetActive(false);
+            weaponsUIArr[i] = WeaponUI.transform.GetChild(i).gameObject;
+            weaponsUIArr[i].SetActive(false);
         }
 
-        weapons[0].SetActive(true);
-        CurrentWeapon = weapons[0];
+        weaponsArr[0].SetActive(true);
+        weaponsUIArr[0].SetActive(true);
+        CurrentWeapon = weaponsArr[0];
         CurrentWeaponIndex = 0;
     }
 
@@ -35,10 +41,12 @@ public class WeaponChange : MonoBehaviour
             //next weapon
             if(CurrentWeaponIndex < TotalWeapons - 1)
             {
-                weapons[CurrentWeaponIndex].SetActive(false);
+                weaponsArr[CurrentWeaponIndex].SetActive(false);
+                weaponsUIArr[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
-                weapons[CurrentWeaponIndex].SetActive(true);
-                CurrentWeapon = weapons[CurrentWeaponIndex];
+                weaponsArr[CurrentWeaponIndex].SetActive(true);
+                weaponsUIArr[CurrentWeaponIndex].SetActive(true);
+                CurrentWeapon = weaponsArr[CurrentWeaponIndex];
             }
         }
 
@@ -47,10 +55,12 @@ public class WeaponChange : MonoBehaviour
             //previous weapon
             if(CurrentWeaponIndex > 0)
             {
-                weapons[CurrentWeaponIndex].SetActive(false);
+                weaponsArr[CurrentWeaponIndex].SetActive(false);
+                weaponsUIArr[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
-                weapons[CurrentWeaponIndex].SetActive(true);
-                CurrentWeapon = weapons[CurrentWeaponIndex];
+                weaponsArr[CurrentWeaponIndex].SetActive(true);
+                weaponsUIArr[CurrentWeaponIndex].SetActive(true);
+                CurrentWeapon = weaponsArr[CurrentWeaponIndex];
             }
         }
     }

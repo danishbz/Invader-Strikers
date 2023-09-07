@@ -4,39 +4,13 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    private Vector3 mousePos;
-    private Camera mainCam;
-    private Rigidbody2D rb;
-    public float force = 5;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // /////////////////////////////////////////////////
-        // !!! code not used, moved to WeaponAimShoot !!! //
-        // /////////////////////////////////////////////////
-
-        // mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        // rb = GetComponent<Rigidbody2D>();
-        // mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        // Vector3 direction = mousePos - transform.position;
-        // Vector3 rotation = transform.position - mousePos;
-        // rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
-        // float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        // transform.rotation = Quaternion.Euler(0, 0, rot);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private float damageAmount;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
+            collision.GetComponent<EnemyController>().TakeDamage(damageAmount);
             Destroy(gameObject);
-
         }
     }
 }
