@@ -11,7 +11,6 @@ public class WeaponChange : MonoBehaviour
     [SerializeField] private GameObject WeaponHolder, WeaponUI;
 
     private int TotalWeapons, CurrentWeaponIndex;
-    private GameObject CurrentWeapon;
     private GameObject[] weaponsArr, weaponsUIArr;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +28,6 @@ public class WeaponChange : MonoBehaviour
 
         weaponsArr[0].SetActive(true);
         weaponsUIArr[0].SetActive(true);
-        CurrentWeapon = weaponsArr[0];
         CurrentWeaponIndex = 0;
     }
 
@@ -41,12 +39,12 @@ public class WeaponChange : MonoBehaviour
             //next weapon
             if(CurrentWeaponIndex < TotalWeapons - 1)
             {
+                SFXManager.instance.playGunSwap();
                 weaponsArr[CurrentWeaponIndex].SetActive(false);
                 weaponsUIArr[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex += 1;
                 weaponsArr[CurrentWeaponIndex].SetActive(true);
                 weaponsUIArr[CurrentWeaponIndex].SetActive(true);
-                CurrentWeapon = weaponsArr[CurrentWeaponIndex];
             }
         }
 
@@ -55,12 +53,12 @@ public class WeaponChange : MonoBehaviour
             //previous weapon
             if(CurrentWeaponIndex > 0)
             {
+                SFXManager.instance.playGunSwap();
                 weaponsArr[CurrentWeaponIndex].SetActive(false);
                 weaponsUIArr[CurrentWeaponIndex].SetActive(false);
                 CurrentWeaponIndex -= 1;
                 weaponsArr[CurrentWeaponIndex].SetActive(true);
                 weaponsUIArr[CurrentWeaponIndex].SetActive(true);
-                CurrentWeapon = weaponsArr[CurrentWeaponIndex];
             }
         }
     }

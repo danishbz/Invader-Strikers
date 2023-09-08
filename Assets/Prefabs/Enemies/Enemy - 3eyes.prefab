@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2403755936794464175}
   - component: {fileID: 2403755936794464174}
   - component: {fileID: 2403755936794464173}
-  - component: {fileID: 2403755936794464172}
   m_Layer: 0
   m_Name: Enemy - 3eyes
   m_TagString: Enemy
@@ -167,19 +166,4 @@ MonoBehaviour:
   powerupArr:
   - {fileID: 1057454547666853454, guid: 9d7e42a87bfb7b2448315fadbd8ff8e6, type: 3}
   - {fileID: 242360164873108910, guid: f152ee85dcc9ca647ba7f6e66e9f9851, type: 3}
---- !u!114 &2403755936794464172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2403755936794464169}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f4b7056c6df5143ba4d141303d861f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  speed: 0.5
-  minSize: 0.9
-  maxSize: 1.1
+  whitenMat: {fileID: 2100000, guid: 8b5bfcbefc0ffbf4bbd7b25221a5564c, type: 2}

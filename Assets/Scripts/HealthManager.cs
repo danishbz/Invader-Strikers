@@ -40,7 +40,7 @@ public class HealthManager : MonoBehaviour
         // Check if the player is immune before applying damage
         if (!isImmune)
         {
-            Debug.Log("Damage taken");
+            SFXManager.instance.playDamaged();
             currentHealth -= damageToTake;
 
             if (currentHealth <= 0)
@@ -67,6 +67,20 @@ public class HealthManager : MonoBehaviour
 
     // Method to activate immunity
     public void ActivateImmunity()
+    {
+        
+        if (!isImmune)
+        {
+            Immunity();
+        }
+        else
+        {
+            CancelInvoke("DeactivateImmunity");
+            Immunity();
+        }
+    }
+
+    private void Immunity()
     {
         isImmune = true;
         shield.SetActive(true);

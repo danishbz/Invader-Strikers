@@ -6,16 +6,18 @@ public class WeaponAimShoot : MonoBehaviour
 {
     // Unity 2D Aim and Shoot at mouse position Tutorial https://www.youtube.com/watch?v=-bkmPm_Besk
     // How to make a gun in unity! https://www.youtube.com/watch?v=w6QM9XU1m_o
+    
+    [SerializeField] private GameObject bullet;
+    // control time between firing, no. of bullets, bullet spread (for shotgun), bullet speed
+    [SerializeField] private float timeBetweenFiring, numberOfBullets, bulletSpread, bulletSpeed, bulletTime;
+    // where the bullet comes out from
+    [SerializeField] private Transform ShootPoint;
+    [SerializeField] private AudioClip shootSound;
+
     private Camera mainCam;
     private Vector3 mousePos;
     private float timer;
-    public GameObject bullet;
-    public bool canFire;
-    // control time between firing, no. of bullets, bullet spread (for shotgun), bullet speed
-    public float timeBetweenFiring, numberOfBullets, bulletSpread, bulletSpeed, bulletTime;
-    // where the bullet comes out from
-    public Transform ShootPoint;
-
+    private bool canFire;
     // // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,7 @@ public class WeaponAimShoot : MonoBehaviour
 
         if(Input.GetMouseButton(0) && canFire)
         {
+            SFXManager.instance.playShootSound(shootSound);
             canFire = false;
             Shoot();
         }

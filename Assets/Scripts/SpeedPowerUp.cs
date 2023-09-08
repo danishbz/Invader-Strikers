@@ -10,6 +10,7 @@ public class SpeedPowerUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SFXManager.instance.playSpeedPU();
             player = collision.gameObject;
             CollectPowerUp();
         }
@@ -18,6 +19,7 @@ public class SpeedPowerUp : MonoBehaviour
     // Define the collection action here.
     private void CollectPowerUp()
     {
+        // Access the PlayerController script and apply speed increase
         PlayerController playerCon = player.GetComponent<PlayerController>();
         playerCon.IncreaseSpeed();
 

@@ -8,6 +8,7 @@ public class ShieldPowerUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SFXManager.instance.playShieldPU();
             CollectPowerUp();
         }
     }

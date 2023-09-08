@@ -9,12 +9,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float health = 1f; // Enemy Health
     [SerializeField] private int points; // Enemy Points
     [SerializeField] private GameObject[] powerupArr; //Powerup Array
+    [SerializeField] private Material whitenMat; // Whiten sprite material
     private float dropChance = 5f; // 5% chance to drop a power-up
 
     private Rigidbody2D rb;
     private GameObject target;
     private float hitCounter;
     private SpriteRenderer spriteRenderer;
+    private Material originalMat;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMat = spriteRenderer.material;
     }
 
     // Update is called once per frame
@@ -61,10 +64,11 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damageToTake)
     {
         health -= damageToTake;
-
+        spriteRenderer.material = whitenMat;
+        StartCoroutine(WaitOneFrame());
         if (health <= 0)
         {
-            ScoreManager.instance.UpdateScore(points);
+            ScoreManager.instance.UpdateScore(points); //Update score
 
             DropPowerup(); //Drop powerup
             Destroy(gameObject); //Destroy enemy
@@ -72,25 +76,28 @@ public class EnemyController : MonoBehaviour
     }
     private void DropPowerup()
     {
-        // Generate a random number between 0 and 100
         float randomValue = Random.Range(0f, 100f);
 
-        // Check if the random number is less than or equal to the drop chance
-        if (randomValue <= dropChance)
+        if (randomValue <= dropChance) //Drop chance rng
         {
-            // Generate another random value to determine which power-up to drop
-            float powerUpRandomValue = Random.Range(0f, 1f);
+            SFXManager.instance.playItemDrop();
 
+            //Randomize powerup
+            float powerUpRandomValue = Random.Range(0f, 1f); 
             if (powerUpRandomValue < 0.5f)
             {
-                // Instantiate the Shield PowerUp at the enemy's position
                 Instantiate(powerupArr[0], transform.position, Quaternion.identity);
             }
             else
             {
-                // Instantiate the Speed PowerUp at the enemy's position
                 Instantiate(powerupArr[1], transform.position, Quaternion.identity);
             }
         }
+    }
+
+    private IEnumerator WaitOneFrame()
+    {
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.material = originalMat; //Change back to original material
     }
 }
