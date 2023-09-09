@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameObject gameOverCanvas, pauseCanvas;
-    //[SerializeField] private AudioSource bgmManager;
+    [SerializeField] private AudioSource bgmManager;
 
     private void Awake()
     {
@@ -32,19 +32,21 @@ public class GameManager : MonoBehaviour
     }
     public void Pause()
     {
+        bgmManager.Pause();
         Time.timeScale = 0f;
         pauseCanvas.SetActive(true);
     }
     public void Play()
     {
+        bgmManager.UnPause();
         Time.timeScale = 1f;
         pauseCanvas.SetActive(false);
     }
 
     public void GameOver()
     {
-        //bgmManager.Stop();
-        //SFXManager.instance.playGameOver();
+        bgmManager.Stop();
+        SFXManager.instance.playGameOver();
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0f;
     }
