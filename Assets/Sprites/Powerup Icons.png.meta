@@ -131,35 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 358d5c32be1078240b7e6185d4a0e57c
-      internalID: 513533217
+      spriteID: d5cafd54cd32e374196facd3c404e08e
+      internalID: -834174788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: Powerup Icons_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 753cb769443b9ba4ead7060ab57799d7
-      internalID: -1176849742
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Powerup Icons_2
       rect:
         serializedVersion: 2
         x: 0
@@ -173,29 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd603a3b8f72adb43b9db09c97208efd
-      internalID: -701287919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Powerup Icons_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e04a936f9ed3a5448c485b20320439f
-      internalID: -756919236
+      spriteID: eccab57dc157d654bbfeefb53610cd62
+      internalID: -1651212058
       vertices: []
       indices: 
       edges: []
@@ -211,10 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Powerup Icons_0: 513533217
-      Powerup Icons_1: -1176849742
-      Powerup Icons_2: -701287919
-      Powerup Icons_3: -756919236
+      Powerup Icons_0: -834174788
+      Powerup Icons_1: -1651212058
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
