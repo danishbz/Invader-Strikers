@@ -95,4 +95,14 @@ public class HealthManager : MonoBehaviour
         shield.SetActive(false);
         shieldIconUI.SetActive(false);
     }
+    public void IncreaseHealth(float healthToAdd)
+    {
+        currentHealth += healthToAdd;
+
+        // Ensure health doesn't exceed the maximum value.
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        healthSlider.value = currentHealth;
+    }
+
 }

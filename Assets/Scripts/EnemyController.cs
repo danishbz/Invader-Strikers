@@ -83,14 +83,23 @@ public class EnemyController : MonoBehaviour
             SFXManager.instance.playItemDrop();
 
             //Randomize powerup
-            float powerUpRandomValue = Random.Range(0f, 1f); 
-            if (powerUpRandomValue < 0.5f)
+            float powerUpRandomValue = Random.Range(0f, 1f);
+
+            if (powerUpRandomValue < 0.35f)
             {
                 Instantiate(powerupArr[0], transform.position, Quaternion.identity);
             }
-            else
+            else if (powerUpRandomValue < 0.7f)
             {
                 Instantiate(powerupArr[1], transform.position, Quaternion.identity);
+            }
+            else if (powerUpRandomValue < 0.95f)
+            {
+                Instantiate(powerupArr[3], transform.position, Quaternion.identity); // health restore powerup
+            }
+            else
+            {
+                Instantiate(powerupArr[2], transform.position, Quaternion.identity); // destroyer powerup
             }
         }
     }
