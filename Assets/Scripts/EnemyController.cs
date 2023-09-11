@@ -70,8 +70,7 @@ public class EnemyController : MonoBehaviour
         {
             ScoreManager.instance.UpdateScore(points); //Update score
 
-            DropPowerup(); //Drop powerup
-            Destroy(gameObject); //Destroy enemy
+            StartCoroutine(WaitOneFrameDeath());
         }
     }
     private void DropPowerup()
@@ -108,5 +107,11 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.material = originalMat; //Change back to original material
+    }
+    private IEnumerator WaitOneFrameDeath()
+    {
+        yield return new WaitForSeconds(0.1f);
+        DropPowerup(); //Drop powerup
+        Destroy(gameObject);
     }
 }

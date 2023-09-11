@@ -6,7 +6,14 @@ public class SFXManager : MonoBehaviour
 {
     public static SFXManager instance;
 
-    [SerializeField] private AudioClip damaged, gunSwap, shieldPowerup, speedPowerup, itemDrop, gameOver;
+    [SerializeField] private AudioClip damaged, 
+                                       gunSwap, 
+                                       shieldPowerup, 
+                                       speedPowerup,
+                                       destroyPowerup,
+                                       healPowerup,
+                                       itemDrop, 
+                                       gameOver;
     private AudioSource audioSrc;
 
     private void Awake()
@@ -38,6 +45,14 @@ public class SFXManager : MonoBehaviour
     public void playSpeedPU() //Picking up Speed Powerup
     {
         audioSrc.PlayOneShot(speedPowerup);
+    }
+    public void playDestroyPU() //Picking up Speed Powerup
+    {
+        audioSrc.PlayOneShot(destroyPowerup);
+    }
+    public void playHealPU() //Picking up Speed Powerup
+    {
+        audioSrc.PlayOneShot(healPowerup);
     }
     public void playItemDrop() //Picking up Speed Powerup
     {

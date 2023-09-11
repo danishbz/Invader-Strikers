@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyPowerUp : MonoBehaviour
 {
-    public float destroyRadius = 5f; // Adjust the radius
+    [SerializeField] private float destroyRadius; // Adjust the radius
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +16,7 @@ public class DestroyPowerUp : MonoBehaviour
 
     private void CollectPowerUp()
     {
+        SFXManager.instance.playDestroyPU();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, destroyRadius);
 
         foreach (Collider2D collider in colliders)
