@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {   
-    public float moveSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float speedIncreasePercentage = 0.1f; // 1% increase in speed
+    [SerializeField] private float maxSpeed = 8f; // Maximum speed
 
-    public Animator anim;
-
-    private float speedIncreasePercentage = 0.1f; // 1% increase in speed
-    private float maxSpeed = 8f; // Maximum speed
-
+    private Animator anim;
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,13 +24,9 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-        //Debug.Log(moveInput);
-
         moveInput.Normalize();
-
-        //Debug.Log(moveInput);
-
-       transform.position += moveInput * moveSpeed * Time.deltaTime;
+        
+        transform.position += moveInput * moveSpeed * Time.deltaTime;
 
         if(moveInput != Vector3.zero)
         {
@@ -40,13 +36,13 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isMoving", false);
         }
 
-        // Calculate the new speed based on the percentage increase
-        float newSpeed = moveSpeed + moveSpeed * speedIncreasePercentage;
-
-        // Cap the speed to the maximum value
-        if (newSpeed > maxSpeed)
+        if(moveInput.x < 0)
         {
-            newSpeed = maxSpeed;
+            spriteRenderer.flipX = true;
+        }
+        else if(moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false;
         }
     }
 
