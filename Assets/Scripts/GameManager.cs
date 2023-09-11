@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] private GameObject gameOverCanvas, pauseCanvas;
+    [SerializeField] private GameObject gameOverCanvas, pauseCanvas, tutorialCanvas;
     [SerializeField] private AudioSource bgmManager;
+    [SerializeField] private float tutorialDuration; // Tutorial Duration
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gameOverCanvas.SetActive(false);
         pauseCanvas.SetActive(false);
+        StartCoroutine(TutorialCloseCoroutine());
     }
     private void Update()
     {
@@ -59,5 +61,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(name);
+    }
+    private IEnumerator TutorialCloseCoroutine()
+    {
+        yield return new WaitForSeconds(tutorialDuration);
+        tutorialCanvas.SetActive(false);
     }
 }

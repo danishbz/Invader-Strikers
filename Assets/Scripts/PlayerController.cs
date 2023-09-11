@@ -5,14 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {   
     [SerializeField] private float moveSpeed;
-    [SerializeField] private Animator anim;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float speedIncreasePercentage = 0.1f; // 1% increase in speed
     [SerializeField] private float maxSpeed = 8f; // Maximum speed
 
+    private Animator anim;
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
