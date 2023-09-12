@@ -69,7 +69,6 @@ public class EnemyController : MonoBehaviour
         if (health <= 0)
         {
             ScoreManager.instance.UpdateScore(points); //Update score
-
             StartCoroutine(WaitOneFrameDeath());
         }
     }
@@ -112,6 +111,7 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         DropPowerup(); //Drop powerup
+        UltimateManager.instance.increaseKillCount(); //Increase Ultimate Counter
         Destroy(gameObject);
     }
 }

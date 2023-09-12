@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameObject gameOverCanvas, pauseCanvas, tutorialCanvas;
-    [SerializeField] private AudioSource bgmManager;
+    [SerializeField] private AudioSource bgmManager, sfxManager;
     [SerializeField] private float tutorialDuration; // Tutorial Duration
 
     private void Awake()
@@ -35,18 +35,21 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         bgmManager.Pause();
+        sfxManager.Pause();
         Time.timeScale = 0f;
         pauseCanvas.SetActive(true);
     }
     public void Play()
     {
         bgmManager.UnPause();
+        sfxManager.UnPause();
         Time.timeScale = 1f;
         pauseCanvas.SetActive(false);
     }
 
     public void GameOver()
     {
+        sfxManager.Stop();
         bgmManager.Stop();
         SFXManager.instance.playGameOver();
         gameOverCanvas.SetActive(true);

@@ -26,7 +26,6 @@ public class WeaponAimShoot : MonoBehaviour
 
     void Update()
     {
-
         Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
