@@ -15,18 +15,17 @@ public class WeaponAimShoot : MonoBehaviour
     [SerializeField] private AudioClip shootSound;
 
     private Camera mainCam;
-    private Vector3 mousePos;
     private float timer;
-    private bool canFire;
+
+    public bool canFire;
     // // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         mainCam = Camera.main;
     }
 
-    void Update()
+    private void Update()
     {
-
         Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -49,9 +48,9 @@ public class WeaponAimShoot : MonoBehaviour
         }
     }
 
-    void Shoot()
+    private void Shoot()
     {
-        for(int i = 0; i < numberOfBullets; i++) 
+        for (int i = 0; i < numberOfBullets; i++) 
         {
             GameObject b = Instantiate(bullet, ShootPoint.position, ShootPoint.rotation);
             Rigidbody2D brb = b.GetComponent<Rigidbody2D>();
@@ -61,7 +60,5 @@ public class WeaponAimShoot : MonoBehaviour
             brb.velocity = (dir + pdir) * bulletSpeed;
             Destroy(b, bulletTime);
         }
-
     }
-
 }

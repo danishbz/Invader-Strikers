@@ -6,12 +6,11 @@ public class WeaponSpriteChange : MonoBehaviour
 {
     // https://gamedevbeginner.com/how-to-change-a-sprite-from-a-script-in-unity-with-examples/
     // public SpriteRenderer spriteRenderer;
-    public Sprite ogSprite;
-    public Sprite newSprite;
+    [SerializeField] private Sprite ogSprite, newSprite;
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
         }
