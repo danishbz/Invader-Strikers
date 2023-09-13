@@ -7,8 +7,9 @@ public class UltimateManager : MonoBehaviour
     public static UltimateManager instance;
 
     [SerializeField] private Slider ultSlider;
-
     [SerializeField] private int killLimit;
+    [SerializeField] private GameObject activeUltTxtImg;
+
     private int killCount;
     private bool isUltActive;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class UltimateManager : MonoBehaviour
         {
             instance = this;
         }
+        activeUltTxtImg.SetActive(false);
         isUltActive = false;
         ultSlider.maxValue = killLimit;
         ultSlider.value = 0;
@@ -29,15 +31,12 @@ public class UltimateManager : MonoBehaviour
         if (killCount >= killLimit)
         {
             isUltActive = true;
-            /*            GameObject currentWeapon = GameObject.FindGameObjectWithTag("Weapon");
-                        if(Input.GetKeyDown("x"))
-                        {
-                            currentWeapon.GetComponent<PistolUlt>().activateUlt();
-                        }*/
+            activeUltTxtImg.SetActive(true);
         }
         else
         {
             isUltActive = false;
+            activeUltTxtImg.SetActive(false);
         }
     }
     public void increaseKillCount()

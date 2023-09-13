@@ -23,10 +23,9 @@ public class DestroyPowerUp : MonoBehaviour
         {
             if (collider.CompareTag("Enemy"))
             {
-                Destroy(collider.gameObject);
+                collider.GetComponent<EnemyController>().TakeDamage(10);
             }
         }
-
         Destroy(gameObject);
     }
 }
