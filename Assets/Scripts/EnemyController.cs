@@ -59,6 +59,12 @@ public class EnemyController : MonoBehaviour
 
             hitCounter = hitWaitTime;
         }
+
+        if (collision.gameObject.tag == "Obstacle") 
+        {
+            GameObject obstacle = GameObject.FindGameObjectWithTag("Obstacle");   
+            Physics2D.IgnoreCollision(obstacle.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     public void TakeDamage(float damageToTake)
