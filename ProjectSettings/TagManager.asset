@@ -8,6 +8,7 @@ TagManager:
   - ShieldPowerUp
   - SpeedPowerUp
   - Weapon
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1804389625
+    locked: 0
+  - name: Obstacle
+    uniqueID: 3346874077
     locked: 0
   - name: UI
     uniqueID: 2193634313

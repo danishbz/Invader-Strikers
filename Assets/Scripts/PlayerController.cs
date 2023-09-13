@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,14 @@ public class PlayerController : MonoBehaviour
 
         moveInput.Normalize();
         
-        transform.position += moveInput * moveSpeed * Time.deltaTime;
+        // transform.position += moveInput * moveSpeed * Time.deltaTime;
+
+        Vector3 newPosition = transform.position + moveInput * moveSpeed * Time.deltaTime;
+        // Clamp the player's position
+        newPosition.x = Mathf.Clamp(newPosition.x, -95f, 95f);
+        newPosition.y = Mathf.Clamp(newPosition.y, -55f, 55f);
+
+        transform.position = newPosition;
 
         if(moveInput != Vector3.zero)
         {
