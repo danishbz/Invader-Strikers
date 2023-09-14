@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8738230167260125701}
   - component: {fileID: 2973168064530989799}
   - component: {fileID: 4731187829757876842}
+  - component: {fileID: 5873265796774398293}
   m_Layer: 0
   m_Name: Enemy - Grey Shooter
   m_TagString: Enemy
@@ -140,10 +141,6 @@ MonoBehaviour:
   moveSpeed: 1
   damage: 6
   hitWaitTime: 1
-  health: 1
-  points: 15
-  powerupArr: []
-  whitenMat: {fileID: 0}
 --- !u!95 &4731187829757876842
 Animator:
   serializedVersion: 5
@@ -165,3 +162,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5873265796774398293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890683431473285452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c81d70c6c676e488f4ed497db4a362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  points: 10
+  powerupArr:
+  - {fileID: 2102247299321491333, guid: 7cae34066fbfc05418ed9fbec68ece1c, type: 3}
+  whitenMat: {fileID: 2100000, guid: 8b5bfcbefc0ffbf4bbd7b25221a5564c, type: 2}

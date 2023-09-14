@@ -9,7 +9,7 @@ public class ShotgunUltEffect : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyController>().TakeDamage(damageAmount);
+            collision.GetComponent<EnemyDamager>().TakeDamage(damageAmount);
         }
     }
 }

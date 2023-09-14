@@ -6,11 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed, damage;
     [SerializeField] private float hitWaitTime = 1f;
-    [SerializeField] private float health = 1f; // Enemy Health
-    [SerializeField] private int points; // Enemy Points
-    [SerializeField] private GameObject[] powerupArr; //Powerup Array
-    [SerializeField] private Material whitenMat; // Whiten sprite material
-    private float dropChance = 5f; // 5% chance to drop a power-up
+    
+    
 
     private Rigidbody2D rb;
     private GameObject target;
@@ -65,59 +62,5 @@ public class EnemyController : MonoBehaviour
             GameObject obstacle = GameObject.FindGameObjectWithTag("Obstacle");   
             Physics2D.IgnoreCollision(obstacle.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
-    }
-
-    public void TakeDamage(float damageToTake)
-    {
-        health -= damageToTake;
-        spriteRenderer.material = whitenMat;
-        StartCoroutine(WaitOneFrame());
-        if (health <= 0)
-        {
-            ScoreManager.instance.UpdateScore(points); //Update score
-            StartCoroutine(WaitOneFrameDeath());
-        }
-    }
-    private void DropPowerup()
-    {
-        float randomValue = Random.Range(0f, 100f);
-
-        if (randomValue <= dropChance) //Drop chance rng
-        {
-            SFXManager.instance.playItemDrop();
-
-            //Randomize powerup
-            float powerUpRandomValue = Random.Range(0f, 1f);
-
-            if (powerUpRandomValue < 0.35f)
-            {
-                Instantiate(powerupArr[0], transform.position, Quaternion.identity);
-            }
-            else if (powerUpRandomValue < 0.7f)
-            {
-                Instantiate(powerupArr[1], transform.position, Quaternion.identity);
-            }
-            else if (powerUpRandomValue < 0.95f)
-            {
-                Instantiate(powerupArr[3], transform.position, Quaternion.identity); // health restore powerup
-            }
-            else
-            {
-                Instantiate(powerupArr[2], transform.position, Quaternion.identity); // destroyer powerup
-            }
-        }
-    }
-
-    private IEnumerator WaitOneFrame()
-    {
-        yield return new WaitForSeconds(0.1f);
-        spriteRenderer.material = originalMat; //Change back to original material
-    }
-    private IEnumerator WaitOneFrameDeath()
-    {
-        yield return new WaitForSeconds(0.1f);
-        DropPowerup(); //Drop powerup
-        UltimateManager.instance.increaseKillCount(); //Increase Ultimate Counter
-        Destroy(gameObject);
     }
 }
