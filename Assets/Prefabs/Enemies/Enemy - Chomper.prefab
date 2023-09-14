@@ -187,8 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c81d70c6c676e488f4ed497db4a362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  points: 10
+  health: 2
+  points: 8
   powerupArr:
+  - {fileID: 1057454547666853454, guid: 9d7e42a87bfb7b2448315fadbd8ff8e6, type: 3}
+  - {fileID: 242360164873108910, guid: f152ee85dcc9ca647ba7f6e66e9f9851, type: 3}
+  - {fileID: 2034040645723059808, guid: 7d58cf3aef188794daa20d42274d988b, type: 3}
   - {fileID: 2102247299321491333, guid: 7cae34066fbfc05418ed9fbec68ece1c, type: 3}
   whitenMat: {fileID: 2100000, guid: 8b5bfcbefc0ffbf4bbd7b25221a5564c, type: 2}

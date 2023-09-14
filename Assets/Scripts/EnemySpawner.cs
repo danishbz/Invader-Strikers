@@ -46,9 +46,10 @@ public class EnemySpawner : MonoBehaviour
             }
         }*/
 
-        if(GameObject.FindGameObjectWithTag("Player").activeSelf)
+        if (target)
         {
-            if(currentWave < waves.Count)
+            transform.position = target.position;
+            if (currentWave < waves.Count)
             {
                 waveCounter -= Time.deltaTime;
                 if(waveCounter <=0)
@@ -66,11 +67,6 @@ public class EnemySpawner : MonoBehaviour
                     spawnedEnemies.Add(newEnemy);
                 }
             }
-        }
-
-        if(target)
-        {
-            transform.position = target.position;
         }
     }
 

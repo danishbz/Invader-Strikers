@@ -17,7 +17,7 @@ public class WeaponAimShoot : MonoBehaviour
     private Camera mainCam;
     private float timer;
 
-    public bool canFire;
+    [HideInInspector] public bool canFire;
     // // Start is called before the first frame update
     private void Start()
     {
