@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: -4617373208845073104}
   - component: {fileID: -3061177870158260867}
   - component: {fileID: -221295669231328868}
-  - component: {fileID: 8252978334279372342}
+  - component: {fileID: 3994164875759825372}
   - component: {fileID: 1720801727104384630}
+  - component: {fileID: 282519227463577491}
   m_Layer: 0
   m_Name: Enemy - Thorns_Exploder
   m_TagString: Enemy
@@ -141,7 +142,7 @@ PolygonCollider2D:
       - {x: 0.33082533, y: -0.015467748}
       - {x: 0.26976722, y: 0.31860843}
       - {x: 0.03379309, y: 0.323642}
---- !u!114 &8252978334279372342
+--- !u!114 &3994164875759825372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,18 +151,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6505762148717581160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148b1c91c577df9458223f6f967bebde, type: 3}
+  m_Script: {fileID: 11500000, guid: 437200e20f7dbab4795fbffaa78475fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
   damage: 0
   hitWaitTime: 1
-  health: 2
+  health: 1
   points: 15
   powerupArr:
-  - {fileID: 1057454547666853454, guid: 9d7e42a87bfb7b2448315fadbd8ff8e6, type: 3}
   - {fileID: 242360164873108910, guid: f152ee85dcc9ca647ba7f6e66e9f9851, type: 3}
-  whitenMat: {fileID: 0}
+  whitenMat: {fileID: 2100000, guid: 8b5bfcbefc0ffbf4bbd7b25221a5564c, type: 2}
 --- !u!95 &1720801727104384630
 Animator:
   serializedVersion: 5
@@ -183,3 +183,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &282519227463577491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505762148717581160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c81d70c6c676e488f4ed497db4a362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  points: 15
+  powerupArr:
+  - {fileID: 2102247299321491333, guid: 7cae34066fbfc05418ed9fbec68ece1c, type: 3}
+  whitenMat: {fileID: 2100000, guid: 8b5bfcbefc0ffbf4bbd7b25221a5564c, type: 2}

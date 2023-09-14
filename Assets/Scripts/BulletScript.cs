@@ -11,7 +11,7 @@ public class BulletScript : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyController>().TakeDamage(damageAmount);
+            collision.GetComponent<EnemyDamager>().TakeDamage(damageAmount);
             if(!canPierce)
             {
                 Destroy(gameObject);
