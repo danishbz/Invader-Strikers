@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class RifleUlt : MonoBehaviour
 {
-    [SerializeField] private GameObject rifleUltBullet;
-    [SerializeField] private float bulletSpeed, ultDuration, bulletTime;
-    [SerializeField] private Transform ShootPoint;
-    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private GameObject rifleUltBullet; //Rifle Ultimate Bullet
+    [SerializeField] private float bulletSpeed, ultDuration, bulletTime; //Bullet speed and time alive, and ult duration
+    [SerializeField] private Transform ShootPoint; //Instantiate position
+    [SerializeField] private AudioClip shootSound; //SFX
 
-    private Rigidbody2D ultBulletRB;
-    private bool pressedOnce;
+    private bool pressedOnce; //Check pressed once
     private void Update()
     {
         bool isUltActive = UltimateManager.instance.getUltStatus();
+        //If x is pressed & ult is active & has not been pressed, activate ult
         if (Input.GetKeyDown("x") && isUltActive && !pressedOnce)
         {
             pressedOnce = true;
@@ -27,12 +27,13 @@ public class RifleUlt : MonoBehaviour
         {
             SFXManager.instance.playShootSound(shootSound);
 
-            var ultBullet = Instantiate(rifleUltBullet, ShootPoint.position, ShootPoint.rotation);
+            var ultBullet = Instantiate(rifleUltBullet, ShootPoint.position, ShootPoint.rotation); //Spawn bullet
             Rigidbody2D ultBulletRB = ultBullet.GetComponent<Rigidbody2D>();
-            ultBulletRB.velocity = transform.rotation * Vector2.right * bulletSpeed;
-            Destroy(ultBullet, bulletTime);
-            yield return new WaitForSeconds(0.01f);
+            ultBulletRB.velocity = transform.rotation * Vector2.right * bulletSpeed; //Move bullet
+            Destroy(ultBullet, bulletTime); //Destroy bullet
+            yield return new WaitForSeconds(0.01f); //Wait 0.01 seconds per bullet spawn
         }
+        //Reset kill count after ult duration ends
         yield return new WaitForSeconds(2);
         pressedOnce = false;
         UltimateManager.instance.resetKillCount();
