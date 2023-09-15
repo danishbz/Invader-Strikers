@@ -6,10 +6,10 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    [SerializeField] private TextMeshProUGUI highScoreTxt;
-    [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private TextMeshProUGUI highScoreTxt; //Highscore Text
+    [SerializeField] private TextMeshProUGUI scoreTxt; //Score Text
 
-    private int score;
+    private int score; //Score
 
     private void Awake()
     {
@@ -18,25 +18,26 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        scoreTxt.text = score.ToString();
-        highScoreTxt.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        scoreTxt.text = score.ToString(); //Update UI
+        highScoreTxt.text = PlayerPrefs.GetInt("HighScore", 0).ToString(); //Get player highscore from player preferences
 
         UpdateHighScore();
     }
-
+    //Update Highscore
     private void UpdateHighScore()
     {
+        //If current score is higher than highscore, update highscore
         if (score > PlayerPrefs.GetInt("HighScore", 0))
         {
             PlayerPrefs.SetInt("HighScore", score);
-            highScoreTxt.text = score.ToString();
+            highScoreTxt.text = score.ToString(); //Update UI
         }
     }
-
+    //Update score
     public void UpdateScore(int points)
     {
         score += points;
-        scoreTxt.text = score.ToString();
+        scoreTxt.text = score.ToString(); //Update UI
         UpdateHighScore();
     }
 }

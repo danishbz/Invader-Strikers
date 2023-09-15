@@ -14,8 +14,8 @@ public class SFXManager : MonoBehaviour
                                        healPowerup,
                                        itemDrop, 
                                        gameOver,
-                                       shotgunUlt;
-    private AudioSource audioSrc;
+                                       shotgunUlt; //Audio Clips
+    private AudioSource audioSrc; //Audio Source
 
     private void Awake()
     {
@@ -38,12 +38,13 @@ public class SFXManager : MonoBehaviour
     public void playShotgunUlt(bool isUltActive) //Shooting Bullets
     {
         audioSrc.clip = shotgunUlt;
+        //If ult is active, loop sound
         if(isUltActive)
         {
             audioSrc.loop = true;
             audioSrc.Play();
         }
-        else
+        else //Else stop looping
         {
             audioSrc.loop = false;
         }
@@ -73,7 +74,7 @@ public class SFXManager : MonoBehaviour
     {
         audioSrc.PlayOneShot(itemDrop);
     }
-    public void playGameOver()
+    public void playGameOver() //Game Over Sfx
     {
         audioSrc.PlayOneShot(gameOver);
     }

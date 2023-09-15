@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] public GameObject enemyToSpawn;
+    public GameObject[] specialToSpawn;
     //[SerializeField] private GameObject[] enemyArr;
-    [SerializeField] public float timeToSpawn;
+    [SerializeField] public float specialTimeToSpawn;
     [SerializeField] public Transform minSpawn, maxSpawn;
+
+    private float specialSpawnCounter;
 
     private float spawnCounter;
     private Transform target;
@@ -34,17 +36,16 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*spawnCounter -= Time.deltaTime;
-        if(spawnCounter <= 0)
+        specialSpawnCounter -= Time.deltaTime;
+        if(specialSpawnCounter <= 0)
         {
-            spawnCounter = timeToSpawn;
+            specialSpawnCounter = specialTimeToSpawn;
 
-            //Instantiate(enemyToSpawn, transform.position, transform.rotation);
-            for (int i = 0; i < enemyArr.Length; i++)
+            for(int i = 0; i < specialToSpawn.Length; i++)
             {
-                Instantiate(enemyArr[i], SelectSpawnPoint(), transform.rotation);
+                GameObject newEnemy = Instantiate(specialToSpawn[i], SelectSpawnPoint(), transform.rotation);
             }
-        }*/
+        }
 
         if (target)
         {

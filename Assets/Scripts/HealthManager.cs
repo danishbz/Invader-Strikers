@@ -6,38 +6,37 @@ public class HealthManager : MonoBehaviour
 {
     public static HealthManager instance;
 
-    [SerializeField] private float maxHealth, secToWait;
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private GameObject shield, shieldIconUI;
+    [SerializeField] private float maxHealth, secToWait; //Maximum Player Health, Seconds to Wait After Death
+    [SerializeField] private Slider healthSlider; //Slider
+    [SerializeField] private GameObject shield, shieldIconUI; //Shield Effect and Shield Powerup UI
+    [SerializeField] private float immunityDuration; //Immunity Duration, For Shield Powerup
 
-    private float currentHealth;
-    private GameObject player;
-
-    // New variables for immunity system
-    private float immunityDuration = 5f; // Duration of immunity after colliding with a power-up
-    private bool isImmune = false;
-    private PlayerController playerController;
+    private float currentHealth; //Current Health
+    private GameObject player; //Player Game Object
+    private bool isImmune; //Check Immune
 
     private void Awake()
     {
         instance = this;
+
         player = GameObject.FindGameObjectWithTag("Player");
+        //Default states
+        isImmune = false;
         shield.SetActive(false);
         shieldIconUI.SetActive(false);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
 
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = currentHealth;
+        healthSlider.maxValue = maxHealth; //Set slider max value
+        healthSlider.value = currentHealth; //Set slider current value
     }
 
     public void ApplyDamage(float damageToTake)
     {
-        // Check if the player is immune before applying damage
+        //If player is not immune, player can be damaged
         if (!isImmune)
         {
             SFXManager.instance.playDamaged();
@@ -47,59 +46,59 @@ public class HealthManager : MonoBehaviour
             {
                 Destroy(player);
                 StartCoroutine(EndScreenCoroutine());
-                player.SetActive(false);
             }
 
             healthSlider.value = currentHealth;
         }
-        else
+        else //Else player is immune and cannot be damaged
         {
             Debug.Log("Player is immune; no damage taken");
         }
     }
 
+    //Wait for awhile before showing game over screen
     private IEnumerator EndScreenCoroutine()
     {
-        Debug.Log("Started Coroutine");
         yield return new WaitForSeconds(secToWait);
         GameManager.instance.GameOver();
     }
 
-    // Method to activate immunity
+    //Activate immunity
     public void ActivateImmunity()
     {
-        
+        //If player is not immune, activate immunity
         if (!isImmune)
         {
             Immunity();
         }
-        else
+        else //else cancal invoke and reactivate immunity again
         {
             CancelInvoke("DeactivateImmunity");
             Immunity();
         }
     }
-
+    //Immunity
     private void Immunity()
     {
         isImmune = true;
         shield.SetActive(true);
         shieldIconUI.SetActive(true);
-        Invoke("DeactivateImmunity", immunityDuration);
+        Invoke("DeactivateImmunity", immunityDuration); //Call DeactivateImmunity after a duration ends
     }
 
-    // Method to deactivate immunity
+    //Deactivate Immunity
     private void DeactivateImmunity()
     {
         isImmune = false;
         shield.SetActive(false);
         shieldIconUI.SetActive(false);
     }
+    //Increase Health, For Heal Powerup
     public void IncreaseHealth(float healthToAdd)
     {
         currentHealth += healthToAdd;
 
-        // Ensure health doesn't exceed the maximum value.
+        //Ensure health doesn't exceed the maximum value.
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
         healthSlider.value = currentHealth;

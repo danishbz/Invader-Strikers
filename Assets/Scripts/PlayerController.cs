@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {   
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float speedIncreasePercentage = 0.1f; // 1% increase in speed
-    [SerializeField] private float maxSpeed = 8f; // Maximum speed
+    [SerializeField] private float speedIncreasePercentage; // Percentage increase in speed
+    [SerializeField] private float maxSpeed; // Maximum speed
 
     private Animator anim;
     private SpriteRenderer spriteRenderer;

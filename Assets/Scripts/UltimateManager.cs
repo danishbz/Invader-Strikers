@@ -6,49 +6,53 @@ public class UltimateManager : MonoBehaviour
 {
     public static UltimateManager instance;
 
-    [SerializeField] private Slider ultSlider;
-    [SerializeField] private int killLimit;
-    [SerializeField] private GameObject activeUltTxtImg;
+    [SerializeField] private Slider ultSlider; //Slider
+    [SerializeField] private int killLimit; //Kill Limit to Reach Ultimate
+    [SerializeField] private GameObject activeUltTxtImg; //Ultimate Image
 
-    private int killCount;
-    private bool isUltActive;
-    // Start is called before the first frame update
+    private int killCount; //Kill Counter
+    private bool isUltActive; //Check if Ult is Active
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+        //Default States
         activeUltTxtImg.SetActive(false);
         isUltActive = false;
         ultSlider.maxValue = killLimit;
         ultSlider.value = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //If kills is above the kill limit, ult is ready
         if (killCount >= killLimit)
         {
             isUltActive = true;
             activeUltTxtImg.SetActive(true);
         }
-        else
+        else //Else if kills is lower than kill limit, ult is not ready
         {
             isUltActive = false;
             activeUltTxtImg.SetActive(false);
         }
     }
+    // Increase kill counter
     public void increaseKillCount()
     {
         killCount++;
         ultSlider.value = killCount;
     }
+    //Reset kill counter
     public void resetKillCount()
     {
         killCount = 0;
         ultSlider.value = killCount;
     }
+    //Get Ultimate Status
     public bool getUltStatus()
     {
         return isUltActive;
