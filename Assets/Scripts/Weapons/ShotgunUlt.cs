@@ -30,7 +30,6 @@ public class ShotgunUlt : MonoBehaviour
     private IEnumerator resetKillCoroutine()
     {
         shotgunEffect.SetActive(true);
-        
         yield return new WaitForSeconds(ultDuration);
         SFXManager.instance.playShotgunUlt(false);
         shotgunEffect.SetActive(false);
