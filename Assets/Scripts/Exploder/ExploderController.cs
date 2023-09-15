@@ -7,13 +7,13 @@ using UnityEngine;
 public class ExploderController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float explosionDamage = 2f;
-    [SerializeField] private float explosionRadius = 3f;
-    private float explosionTimer = 1.25f;
+    [SerializeField] private float explosionDamage;
+    [SerializeField] private float deathTimer = 1.25f;
+    //[SerializeField] private float explosionRadius = 3f;
+
     private bool isImmobilized = false;
     private Rigidbody2D rb;
     private GameObject target;
-    private float hitCounter;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     // Start is called before the first frame update
@@ -28,12 +28,11 @@ public class ExploderController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         Move();
-
     }
 
-    private void Move(){
+    private void Move()
+    {
         if (target && !isImmobilized)
         {
             animator.SetBool("isWalking", true);
@@ -56,48 +55,31 @@ public class ExploderController : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision){
+    private void OnCollisionStay2D(Collision2D collision)
+    {
         if (collision.gameObject.tag == "Obstacle") 
         {
             GameObject obstacle = GameObject.FindGameObjectWithTag("Obstacle");   
             Physics2D.IgnoreCollision(obstacle.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ExplodeAnim()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Explode();
-        }
-        
-    }
-
-    private void Explode(){
         isImmobilized = true;
         animator.SetBool("isWalking", false);
+        Debug.Log("ExplodeAnim Called");
         animator.SetTrigger("Explosion");
-        StartCoroutine(ExplodeCoroutine());
+        StartCoroutine(DestroySelfCoroutine());
     }
-
-    private void checkPlayerInRange(){
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.gameObject.CompareTag("Player"))
-            {
-                HealthManager.instance.ApplyDamage(explosionDamage);
-            }
-        }
+    public void Explode()
+    {
+        Debug.Log("Explode Called");
+        HealthManager.instance.ApplyDamage(explosionDamage);
     }
-
-    IEnumerator ExplodeCoroutine(){
-        yield return new WaitForSeconds(explosionTimer);
-        checkPlayerInRange();
+    private IEnumerator DestroySelfCoroutine()
+    {
+        yield return new WaitForSeconds(deathTimer);
         Destroy(gameObject);
     }
-
-
-
 }
 

@@ -10,12 +10,18 @@ public class RifleUlt : MonoBehaviour
     [SerializeField] private AudioClip shootSound; //SFX
 
     private bool pressedOnce; //Check pressed once
+    private WeaponChange weaponChange; //Weapon Change variable
+    private void Awake()
+    {
+        weaponChange = gameObject.transform.parent.GetComponent<WeaponChange>();
+    }
     private void Update()
     {
         bool isUltActive = UltimateManager.instance.getUltStatus();
         //If x is pressed & ult is active & has not been pressed, activate ult
         if (Input.GetKeyDown("x") && isUltActive && !pressedOnce)
         {
+            weaponChange.enabled = false; //Deactivate Weapon Swapping
             pressedOnce = true;
             StartCoroutine(activateUlt());
         }
@@ -35,6 +41,7 @@ public class RifleUlt : MonoBehaviour
         }
         //Reset kill count after ult duration ends
         yield return new WaitForSeconds(2);
+        weaponChange.enabled = true; //Reactivate Weapon Swapping
         pressedOnce = false;
         UltimateManager.instance.resetKillCount();
     }
