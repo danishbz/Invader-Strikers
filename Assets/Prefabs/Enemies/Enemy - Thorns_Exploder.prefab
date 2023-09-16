@@ -205,7 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   explosionDamage: 2
-  explosionRadius: 3
+  explosionRadius: 2
 --- !u!95 &1720801727104384630
 Animator:
   serializedVersion: 5
