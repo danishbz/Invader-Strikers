@@ -8,9 +8,11 @@ public class ShotgunUlt : MonoBehaviour
     [SerializeField] private float ultDuration; //Ultimate Duration
 
     private bool pressedOnce; //Check pressed once
+    private WeaponChange weaponChange; //Weapon Change variable
     private void Awake()
     {
         shotgunEffect.SetActive(false);
+        weaponChange = gameObject.transform.parent.GetComponent<WeaponChange>();
     }
     private void Update()
     {
@@ -18,6 +20,7 @@ public class ShotgunUlt : MonoBehaviour
         //If x is pressed & ult is active & has not been pressed, activate ult
         if (Input.GetKeyDown("x") && isUltActive && !pressedOnce)
         {
+            weaponChange.enabled = false; //Deactivate Weapon Swapping
             pressedOnce = true;
             activateUlt();
         }
@@ -33,6 +36,7 @@ public class ShotgunUlt : MonoBehaviour
     {
         shotgunEffect.SetActive(true);
         yield return new WaitForSeconds(ultDuration);
+        weaponChange.enabled = true; //Reactivate Weapon Swapping
         SFXManager.instance.playShotgunUlt(false);
         shotgunEffect.SetActive(false);
         UltimateManager.instance.resetKillCount();
