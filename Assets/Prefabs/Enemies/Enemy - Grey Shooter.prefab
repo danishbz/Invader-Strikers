@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -160,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c81d70c6c676e488f4ed497db4a362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  points: 10
+  health: 3
+  points: 12
   powerupArr:
   - {fileID: 1057454547666853454, guid: 9d7e42a87bfb7b2448315fadbd8ff8e6, type: 3}
   - {fileID: 242360164873108910, guid: f152ee85dcc9ca647ba7f6e66e9f9851, type: 3}
@@ -182,10 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   damage: 2
-  stoppingDistance: 3
-  attackRange: 5
-  bulletSpeed: 5
-  startTimeBtwShots: 2
+  stoppingDistance: 5
+  attackRange: 7
+  bulletSpeed: 3
+  startTimeBtwShots: 3
   projectile: {fileID: 3178794852525857789, guid: c7f256a1433110747918787b9ad9060e, type: 3}
   shootingPoint: {fileID: 1509875338788749148}
 --- !u!1 &6017541014778473711

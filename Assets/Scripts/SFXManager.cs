@@ -14,7 +14,8 @@ public class SFXManager : MonoBehaviour
                                        healPowerup,
                                        itemDrop, 
                                        gameOver,
-                                       shotgunUlt; //Audio Clips
+                                       shotgunUlt,
+                                       alienShoot; //Audio Clips
     private AudioSource audioSrc; //Audio Source
 
     private void Awake()
@@ -77,5 +78,9 @@ public class SFXManager : MonoBehaviour
     public void playGameOver() //Game Over Sfx
     {
         audioSrc.PlayOneShot(gameOver);
+    }
+    public void playAlienShoot() //Game Over Sfx
+    {
+        audioSrc.PlayOneShot(alienShoot);
     }
 }
