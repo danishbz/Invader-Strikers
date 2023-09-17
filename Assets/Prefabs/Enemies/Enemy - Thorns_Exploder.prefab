@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 7
-  points: 15
+  points: 12
   powerupArr:
   - {fileID: 1057454547666853454, guid: 9d7e42a87bfb7b2448315fadbd8ff8e6, type: 3}
   - {fileID: 242360164873108910, guid: f152ee85dcc9ca647ba7f6e66e9f9851, type: 3}

@@ -67,13 +67,11 @@ public class ExploderController : MonoBehaviour
     {
         isImmobilized = true;
         animator.SetBool("isWalking", false);
-        Debug.Log("ExplodeAnim Called");
         animator.SetTrigger("Explosion");
         StartCoroutine(DestroySelfCoroutine());
     }
     public void Explode()
     {
-        Debug.Log("Explode Called");
         HealthManager.instance.ApplyDamage(explosionDamage);
     }
     private IEnumerator DestroySelfCoroutine()

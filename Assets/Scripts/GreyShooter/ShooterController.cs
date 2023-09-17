@@ -30,38 +30,39 @@ public class ShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Shoot();
+        if (target)
+        {
+            Move();
+            Shoot();
+        }
     }
 
     private void Move(){
-        if(target){
-            if(Vector2.Distance(transform.position, target.transform.position) > stoppingDistance)
-            {
-                rb.velocity = (target.transform.position - transform.position).normalized * moveSpeed;
+        if(Vector2.Distance(transform.position, target.transform.position) > stoppingDistance)
+        {
+            rb.velocity = (target.transform.position - transform.position).normalized * moveSpeed;
 
-                if (transform.position.x < target.transform.position.x)
-                {
-                    spriteRenderer.flipX = true;
-                }
-            // Flip sprite when player posX is SMALLER than enemy posX
-                else
-                {
-                    spriteRenderer.flipX = false;
-                }   
-            }
-            else if(Vector2.Distance(transform.position, target.transform.position) < stoppingDistance)
+            if (transform.position.x < target.transform.position.x)
             {
-                rb.velocity = Vector2.zero;
+                spriteRenderer.flipX = true;
             }
+        // Flip sprite when player posX is SMALLER than enemy posX
+            else
+            {
+                spriteRenderer.flipX = false;
+            }   
         }
-        
+        else if(Vector2.Distance(transform.position, target.transform.position) < stoppingDistance)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void Shoot(){
         if(Vector2.Distance(transform.position, target.transform.position) < attackRange){
             animator.SetBool("inRange", true);
             if(weaponCooldown <= 0){
+                SFXManager.instance.playAlienShoot();
                 GameObject b = Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
                 Rigidbody2D brb = b.GetComponent<Rigidbody2D>();
                 brb.velocity = (target.transform.position - b.transform.position).normalized * bulletSpeed;
@@ -71,7 +72,6 @@ public class ShooterController : MonoBehaviour
                 weaponCooldown -= Time.deltaTime;
             }
         }
-        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
