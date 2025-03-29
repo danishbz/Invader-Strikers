@@ -1,4 +1,4 @@
-# Invader Striker
+# Invader Strikers
 
 Welcome to **Invader Striker**, a thrilling 2D semi-top-down shoot-em-up game developed by **Team 18**. Dive into an action-packed experience where you're the last line of defense against waves of unique alien invaders!
 
